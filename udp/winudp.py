@@ -1,14 +1,13 @@
 import socket
 from pynput import keyboard
 
-# 设置目标 IP 和端口（ROS 主机的 IP 和端口）
-server_ip = "192.168.1.9"  # 替换成 ROS 主机的 IP 地址
+server_ip = "192.168.1.9"  
 server_port = 9990  # 选择合适的端口号
 
 # 创建 UDP 套接字
 udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-# 显示控制提示
+
 print("控制小乌龟的运动：")
 print("w - 向上移动")
 print("s - 向下移动")
@@ -17,7 +16,7 @@ print("d - 向右旋转")
 print("q - 停止")
 print("按 ESC 键退出")
 
-# 发送控制命令到 ROS
+
 def on_press(key):
     try:
         if key.char == 'w':
