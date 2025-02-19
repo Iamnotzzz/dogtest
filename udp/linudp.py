@@ -1,7 +1,7 @@
 import socket
 import rospy
-from turtlesim.msg import Twist
 from geometry_msgs.msg import Twist
+
 
 def udp_server():
     # 初始化 ROS 节点
@@ -9,7 +9,7 @@ def udp_server():
 
     # 设置监听 IP 和端口（与 Windows 端一致）
     server_ip = "0.0.0.0"  # 接受所有IP的消息
-    server_port = 9999  # 选择与 Windows 端一致的端口号
+    server_port = 9990  # 选择与 Windows 端一致的端口号
 
     # 创建 UDP 套接字
     udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
