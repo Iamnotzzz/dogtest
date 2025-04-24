@@ -2,7 +2,7 @@ import socket
 from pynput import keyboard
 
 server_ip = "192.168.1.9"  
-server_port = 9990  # 选择合适的端口号
+server_port = 9990  
 
 # 创建 UDP 套接字
 udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
