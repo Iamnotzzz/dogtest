@@ -6,12 +6,10 @@ from geometry_msgs.msg import Twist
 def udp_server():
 
     rospy.init_node('udp_listener', anonymous=True)
+    server_ip = "0.0.0.0" 
+    server_port = 9990 
 
 
-    server_ip = "192.168.1.9"  # 接受所有IP的消息
-    server_port = 9990  # 选择与 Windows 端一致的端口号
-
-    # 创建 UDP 套接字
     udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     udp_socket.bind((server_ip, server_port))
 
