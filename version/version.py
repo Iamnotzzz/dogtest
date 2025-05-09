@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # 初始化摄像头
-cap = cv2.VideoCapture(1)  # 使用第一个摄像头
+cap = cv2.VideoCapture('/dev/video0')
 cap.set(cv2.CAP_PROP_FPS, 30)  # 设置帧率为30fps
 
 # 定义黑色阈值
