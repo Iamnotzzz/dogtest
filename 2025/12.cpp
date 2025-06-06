@@ -101,6 +101,50 @@ int main(int argc, char **argv) {
                     std::cout << "右环岛2" << std::endl;
                     sport_client.Move(0.28, 0, 0.68); // 左转直角弯
                 }
+                else if (received_id == 5) {
+                    // ID为5时，执行避障动作
+                    std::cout << "避障" << std::endl;
+                    sport_client.FreeAvoid(true); // 进入避障模式
+                    sport_client.Move(0.18, 0, 0.68); // 左转直角弯
+                }
+                else if (received_id == 6) {
+                    // ID为6时，执行轨迹定位动作
+                    time_seg = 0.2; //参考轨迹的时间步长
+                    time_temp = ct - time_seg; //当前时刻
+
+                    for (int i = 0; i < 30; i++)
+
+                    {
+                        time_temp += time_seg;
+                        
+                        //以程序运行时的位置为原点，计算一个圆形轨迹的路径点
+                        px_local = 0.5 * sin(0.5 * time_temp);
+                        py_local = 0.5 * cos(0.5 * time_temp)-1;
+                        yaw_local = 0;
+                        vx_local = 0.25 * cos(0.5 * time_temp);
+                        vy_local = -0.25 * sin(0.5 * time_temp);
+                        vyaw_local = 0;
+                        
+                        //转化为绝对坐标系下的路径点
+                        path_point_tmp.timeFromStart = i * time_seg;
+                        path_point_tmp.x = px_local * cos(yaw0) - py_local * sin(yaw0) + px0;
+                        path_point_tmp.y = px_local * sin(yaw0) + py_local * cos(yaw0) + py0;
+                        path_point_tmp.yaw = yaw_local + yaw0;
+                        path_point_tmp.vx = vx_local * cos(yaw0) - vy_local * sin(yaw0);
+                        path_point_tmp.vy = vx_local * sin(yaw0) + vy_local * cos(yaw0);
+                        path_point_tmp.vyaw = vyaw_local;
+                        path.push_back(path_point_tmp);
+                    }
+                    sport_client.TrajectoryFollow(path);
+                    
+                }
+                else if (received_id == 7) {
+                    // ID为7时，执行上台阶动作
+                    std::cout << "台阶" << std::endl;
+                    sport_client.ClassicWalk(true);
+                    sport_client.Move(0.28, 0, 0); // 直行 
+                }
+                
             }
         }
     }
