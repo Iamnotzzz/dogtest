@@ -32,8 +32,8 @@ int main(int argc, char **argv)
   sport_client.RecoveryStand();    // 恢复机器人站立状态
   sleep(3);
 
-  std::cout << "台阶" << std::endl;
-  sport_client.ClassicWalk(true);
+  std::cout << "避障" << std::endl;
+  sport_client.FreeAvoid(true);
   for(int i=0;i<30;i++)
   {
     if(i<18)
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
       std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
   }
-  sport_client.ClassicWalk(false);
+  sport_client.FreeAvoid(false);
   sport_client.StopMove();
 
   return 0;

@@ -7,7 +7,7 @@ import threading
 
 # 视觉参数：直接打开 /dev/video0 摄像头，设置为 60 FPS
 cap = cv2.VideoCapture('/dev/video0')
-cap.set(cv2.CAP_PROP_FPS, 60)
+cap.set(cv2.CAP_PROP_FPS, 30)
 
 # 创建一个 TCP socket，用于将处理结果发送给客户端
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
